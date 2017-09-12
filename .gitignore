@@ -24,3 +24,5 @@ hs_err_pid*
 .classpath
 /target/
 .project
+#idea生成文件
+/.idea/
