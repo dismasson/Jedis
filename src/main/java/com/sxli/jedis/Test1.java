@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sxli.jedis;
 
 import org.junit.After;
