@@ -28,7 +28,7 @@ public class StringCMD {
     }
 
     /**
-     * 测试Redis String数据类型相关 命令
+     * 测试Redis String数据类型相关命令
      */
     @Test
     public void StringCMDTest() throws InterruptedException {
@@ -150,5 +150,9 @@ public class StringCMD {
         long timeout2 = 20000;
 
         System.out.println("在Redis中修改key=timeout\tvalue=timeout,修改它的过期时间为:"+timeout2+"毫秒!");
+
+        /**
+         * Set Bit的运用
+         */
     }
 }
