@@ -24,6 +24,7 @@ public class SetCMD {
         System.out.println("\nJunit测试销毁Jedis");
         RedisPool.jedisClose(jedis);
     }
+
     @Test
     public void SetCMDTest(){
         //sadd将一个或多个元素加入到集合当中，已经存在于集合的元素将被忽略。
