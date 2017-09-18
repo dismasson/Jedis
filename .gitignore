@@ -26,4 +26,4 @@ hs_err_pid*
 .project
 #idea生成文件
 /.idea/
-*/*.iml
+/src/main/main.iml

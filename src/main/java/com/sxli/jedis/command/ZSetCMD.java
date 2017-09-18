@@ -113,8 +113,13 @@ public class ZSetCMD {
         //zrevrangebyscore 返回有序集 key 中， score 值介于 max 和 min 之间(默认包括等于 max 或 min )的所有的成员。有序集成员按 score 值递减(从大到小)的次序排列。
         System.out.println(jedis.zrevrangeByScore("userNos",10,1));
 
-        //zinterstore
-        //zunionstore
+        //zinterstore 计算多个或者一个指定的有序集的交集放入到指定的有序集中
+        System.out.println(jedis.zrange("userNos_new",0,-1));
+        jedis.zinterstore("userNos_new","userNos");
+        System.out.println(jedis.zrange("userNos_new",0,-1));
+        //zunionstore 计算多个或者一个指定的有序集的并集放入到指定的有序集中，
+        // 并且可以指定 weights跟aggreaget来指定将结果集的score进行乘(weights)或aggreaget指定score是sum|max|min等方式
+        //给新集的元素的score赋值
         jedis.zadd("developer",3000,"dismasson");
         jedis.zadd("developer",2000,"yangwen");
         jedis.zadd("developer",1000,"lowb");
