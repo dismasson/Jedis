@@ -140,7 +140,7 @@ public class KeyCMD {
         System.out.println("dismasson剩余生存时间为："+jedis.pttl("dismasson")+"毫秒");
 
         /*renamenx
-         当且仅当 newkey 不存在时，将 key 改名为 newkey 。当 key 不存在时，返回一个错误。
+         当且仅当 newkey 不存在时，将 key 改名为 newkey 。当 key 存在时，返回一个错误。
          */
         jedis.set("pc","mechrevo");
         System.out.println("pc2是否存在："+jedis.exists("pc2"));
@@ -234,5 +234,8 @@ public class KeyCMD {
             sort返回或保存给定列表、集合、有序集合 key 中经过排序的元素。
             排序默认以数字作为对象，值被解释为双精度浮点数，然后进行比较。
          */
+
+        // TODO:https://yq.aliyun.com/articles/63461 Redis数据编码方式详解
+        // TODO:https://segmentfault.com/a/1190000009915519 Redis高级功能 - 慢查询日志
     }
 }
