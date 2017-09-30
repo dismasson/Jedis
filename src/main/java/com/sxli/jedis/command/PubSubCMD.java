@@ -10,7 +10,7 @@ import redis.clients.jedis.Jedis;
  * Redis对于Pub/Sub的一系列操作命令
  * 发布/订阅
  */
-public class PubSubCmd {
+public class PubSubCMD {
 
     private Jedis jedis;
 

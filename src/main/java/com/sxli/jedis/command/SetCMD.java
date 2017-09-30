@@ -10,6 +10,7 @@ import redis.clients.jedis.Jedis;
  * Redis数据类型：Set 命令练习
  */
 public class SetCMD {
+
     private Jedis jedis;
 
     @Before
