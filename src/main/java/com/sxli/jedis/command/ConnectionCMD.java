@@ -50,6 +50,7 @@ public class ConnectionCMD {
         }
         //第三步，使用auth password
         jedis.auth("pwd");
+
         //第四步，测试get name此时是否可用
         System.out.println(jedis.get("name"));
     }
