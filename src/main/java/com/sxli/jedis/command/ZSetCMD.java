@@ -30,7 +30,7 @@ public class ZSetCMD {
     public void ZSetCMDTest(){
         //zadd 将一个或多个 member 元素及其 score 值加入到有序集 key 当中。
         //如果某个 member 已经是有序集的成员，那么更新这个 member 的 score 值，并通过重新插入这个 member 元素，来保证该 member 在正确的位置上。
-        //score 值可以是整数值或双精度浮点数。
+        //score 值可以是整数值或双精度浮点数。 如果有序集合中分值都相等时，Redis将根据成员名来进行排序
         //如果 key 不存在，则创建一个空的有序集并执行 ZADD 操作。
         //当 key 存在但不是有序集类型时，返回一个错误。
         //语法 zadd key soure member [soure member] [soure member] ...
