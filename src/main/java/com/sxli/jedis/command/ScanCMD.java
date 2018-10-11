@@ -20,7 +20,7 @@ public class ScanCMD {
     public void init() {
         System.out.println("Junit测试初始化Jedis\n");
         jedis = RedisPool.getJedis();
-
+        initKey();
     }
 
     @After
@@ -32,8 +32,7 @@ public class ScanCMD {
     /**
      * 初始化相关key，总计录入10000条key
      */
-    @Test
-    public void initKey() {
+    private void initKey() {
         Pipeline pipeline = jedis.pipelined();
         for (int i = 0; i < 100000; i++) {
             String key = "key" + i;

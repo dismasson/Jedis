@@ -15,13 +15,24 @@ public class PipelineCMD {
     public void init() {
         System.out.println("Junit测试初始化Jedis");
         jedis = RedisPool.getJedis();
-
+        initKey();
     }
 
     @After
     public void destory() {
-        System.out.println("\nJunit测试销毁Jedis");
+        System.out.println("Junit测试销毁Jedis");
         RedisPool.jedisClose(jedis);
+    }
+
+    /**
+     * 初始化相关key，总计录入10000条key
+     */
+    private void initKey() {
+        Pipeline pipeline = jedis.pipelined();
+        for (int i = 0; i < 100000; i++) {
+            String key = "key" + i;
+            pipeline.set(key, "");
+        }
     }
 
     /**
