@@ -123,11 +123,11 @@ public class TransactionCMD {
         transaction.set("name3","hello1");
         System.out.println("阻塞线程10秒钟让我们有时间在别的客户端给name3插入新的值,打开一个新的客户端并且给key name3赋值 hello2");
         jedis.unwatch();
-       /* try {
+        try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         transaction.exec();
         System.out.println("经过测试发现，当执行完 exec 后，name3的值被覆盖了");
     }

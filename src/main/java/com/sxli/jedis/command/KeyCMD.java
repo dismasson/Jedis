@@ -5,7 +5,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.exceptions.JedisDataException;
+
+import java.util.List;
 
 /**
  *Redis 中对key进行操作的一系列命令
@@ -237,5 +240,49 @@ public class KeyCMD {
 
         // TODO:https://yq.aliyun.com/articles/63461 Redis数据编码方式详解
         // TODO:https://segmentfault.com/a/1190000009915519 Redis高级功能 - 慢查询日志
+    }
+
+    @Test
+    public void sort(){
+        /*
+         * Redis 排序命令 sort
+         */
+        jedis.del("T_SYS_USER");
+        jedis.lpush("T_SYS_USER","1");
+        jedis.lpush("T_SYS_USER","3");
+        jedis.lpush("T_SYS_USER","2");
+        jedis.lpush("T_SYS_USER","4");
+        //默认正序
+        List<String> tSysUsers =  jedis.sort("T_SYS_USER");
+        for (int i = 0; i < tSysUsers.size(); i++) System.out.println(tSysUsers.get(i));
+        //使用倒序获后三位数字
+        SortingParams sortingParams = new SortingParams();
+        //声明使用倒序
+        sortingParams.desc();
+        //声明使用限度
+        sortingParams.limit(1,3);
+        tSysUsers =  jedis.sort("T_SYS_USER",sortingParams);
+        for (int i = 0; i < tSysUsers.size(); i++) System.out.println(tSysUsers.get(i));
+        jedis.del("userId1","userId2","userId3","userId4");
+        jedis.set("userId1", "faker");
+        jedis.set("userId3", "pawn");
+        jedis.set("userId2", "rokkie");
+        jedis.set("userId4", "icon");
+        //借助其他主键来排序
+       // sortingParams.by("userId*");
+       // tSysUsers =  jedis.sort("T_SYS_USER",sortingParams);
+       // for (int i = 0; i < tSysUsers.size(); i++) System.out.println(tSysUsers.get(i));
+        //根据主键排序获取id对应的名字
+        sortingParams.get("userId*");
+        tSysUsers =  jedis.sort("T_SYS_USER",sortingParams);
+        for (int i = 0; i < tSysUsers.size(); i++) System.out.println(tSysUsers.get(i));
+        jedis.del("balance1","balance2","balance3","balance4");
+        jedis.set("balance1", "50000000");
+        jedis.set("balance2", "10000000");
+        jedis.set("balance3", "12000000");
+        jedis.set("balance4", "30000000000");
+        sortingParams.by("userId*").get("balance*").alpha();
+        tSysUsers =  jedis.sort("T_SYS_USER",sortingParams);
+        for (int i = 0; i < tSysUsers.size(); i++) System.out.println(tSysUsers.get(i));
     }
 }

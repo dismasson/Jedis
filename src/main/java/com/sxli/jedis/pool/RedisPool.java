@@ -50,23 +50,6 @@ public class RedisPool {
 	 * jedis实例回收，新版Jedis不用通过连接池去回收，jedis内部直接集成了以前pool回收的机制，直接jedis.close()即可
 	 */
 	public static void jedisClose(Jedis jedis) {
-		if(jedis!=null) {
-			try {
-				jedis.close();
-			} catch (Exception e) {
-				//打印异常信息
-				e.printStackTrace();
-				//释放资源
-				if(jedis.isConnected()) {
-					jedis.quit();
-					jedis.disconnect();
-				}
-			}
-			//判断是否释放资源
-			if(jedis.isConnected()) {
-				jedis.quit();
-				jedis.disconnect();
-			}
-		}
+		jedis.close();
 	}
 }
