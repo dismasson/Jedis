@@ -38,7 +38,7 @@ public class RedisPool {
 					//设置等待时间，超时会出现异常
 					config.setMaxWaitMillis(1);
 					//实例化jedis连接池
-					pool = new JedisPool(config,"localhost",6379);
+					pool = new JedisPool(config,"47.98.116.157",6379);
 				}
 			}
 		}
